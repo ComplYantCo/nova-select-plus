@@ -122,7 +122,7 @@ SelectPlus::make('States Lived In', 'statesLivedIn', State::class)
 ```php
     // inside the Nova resource (exclude all states that start with C)
     SelectPlus::make('States Lived In', 'statesLivedIn', State::class)
-        ->optionsQuery(function (Builder $query) {
+        ->optionsQuery(function (Builder $query, $search, $resourceId, $request) {
             $query->where('name', 'NOT LIKE', 'C%');
         })
 ```
