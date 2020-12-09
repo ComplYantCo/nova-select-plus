@@ -45,7 +45,7 @@ class Controller
         $search = $request->get('search');
 
         if ($field->optionsQuery) {
-            ($field->optionsQuery)($query, $search, $resourceId, $request);
+            ($field->optionsQuery)($query, $search, $request->get('resourceId'), $request);
         }
 
         if ($field->ajaxSearchable !== null && $request->has('search')) {
