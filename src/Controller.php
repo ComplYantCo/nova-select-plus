@@ -42,13 +42,13 @@ class Controller
         /** @var Builder $model */
         $query = $field->relationshipResource::newModel()->newQuery();
 
+        $search = $request->get('search');
+
         if ($field->optionsQuery) {
-            ($field->optionsQuery)($query);
+            ($field->optionsQuery)($query, $search, $resourceId, $request);
         }
 
         if ($field->ajaxSearchable !== null && $request->has('search')) {
-            $search = $request->get('search');
-
             if (is_callable($field->ajaxSearchable)) {
                 $return = $this->application->call($field->ajaxSearchable, [
                     'query'      => $query,
